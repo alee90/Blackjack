@@ -1,5 +1,3 @@
-
-
 console.log('hello');
 
 //declare early variables, playerHand/dealerHand which take array of suits and numbers!
@@ -91,11 +89,28 @@ function hitMe(){
     var playerArea = document.getElementById('playerArea');
     var card = getCard();
     playerHand.push(card);
-    playerArea.innerHTML += "<img src='" + card.url + "'insert h/w here'>";
+    console.log(card);
+    playerArea.innerHTML += "<img src='" + card.url + "'height='200' width='130'>";
 }
+//+1 card into dealer hand while condition is not met (house rules)
+function dealerHit(){
+    var card = getCard();
+    dealerHand.push(card);
+    dealerScore = 0;
+    var aces = 0;
 
+    for(var i=0; i<dealerHand.length; i++){
+        dealerScore = dealerScore + dealerHand[i].value;
+        if(dealerHand[i]=='ace'){
+            aces = aces + 1; //add one to ace counter
+        }
+    }
 
+    while(dealerScore < 17){
 
+    }
+
+}
 
 
 
