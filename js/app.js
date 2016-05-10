@@ -174,6 +174,14 @@ function winner(){
         win++;
         alert('You Win! Dealer: ' + dealerScore + ' || Player: ' + playerScore);
         resultText.innerHTML = 'You Win! Dealer: ' + dealerScore + ' || Player: ' + playerScore;
+    } 
+    else if (playerScore === 21 && dealerScore<21){
+        alert('You won!');
+        resultText.innerHTML = 'You Win! Dealer: ' + dealerScore + ' || Player: ' + playerScore;
+    }
+    else if (playerScore < 21 && dealerScore === 21){
+        alert('You lose!')
+        resultText.innerHTML = 'You lose! Dealer: ' + dealerScore + ' || Player: ' + playerScore
     }
     else {
         alert("no!");
