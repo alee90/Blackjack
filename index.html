@@ -7,6 +7,8 @@
 	<script type="text/javascript" src="js/app.js"></script>
 </head>
 <body>
+	<div id="resultText">
+	</div>
 	<div id="dealerArea">
 	</div>
 	<div id="playerArea">
@@ -14,6 +16,8 @@
 
 	<div id="buttons">
 		<button onclick="hitMe()">Hit Me!</button> 
+		<button onclick="reset(); deal()">Deal Me!</button>
+		<button onclick="dealerHit(); playScore(); winner()">Stay</button>
 	</div> 
 </body>
 </html>
