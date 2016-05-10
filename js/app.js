@@ -111,7 +111,7 @@ function dealerHit(){
         }
     }
 
-    while(dealerScore < 17){  //draw until score > 17
+    while(dealerScore <= 17){  //draw until score > 17
         var dealerArea = document.getElementById('dealerArea');
         var card = getCard();
         dealerHand.push(card);
@@ -122,7 +122,7 @@ function dealerHit(){
         if(card.name == 'ace'){
             aces = aces + 1;
         }
-        if (dealerScore > 21 && numAces > 0){
+        if (dealerScore > 21 && aces > 0){
             dealerScore = dealerScore - 10;
             aces = aces - 1;
             }
@@ -199,11 +199,6 @@ function reset(){
     }
 }
 
-console.log(win);
-console.log(loss);
-console.log(draw);
-
-
-
-
-
+// console.log(win);
+// console.log(loss);
+// console.log(draw);
