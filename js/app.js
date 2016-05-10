@@ -98,9 +98,6 @@ function hitMe(){
 }
 //+1 card into dealer hand while condition is not met (house rules)
 function dealerHit(){
-    var card = getCard();
-    dealerHand.push(card);
-    console.log(card);
     dealerScore = 0;
     var aces = 0;
 
