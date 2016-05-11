@@ -3,7 +3,8 @@ div{
 }
 
 body{
-	background-color: limegreen;
+	background-image: url("../images/greenbg.jpg");
+	background-size: cover;
 }
 
 #playerArea{
@@ -14,8 +15,14 @@ body{
 	padding: 3px;
 }
 
+#resultText{
+	font-family: "Calibri";
+	font-size: 14px;
+	color: white;
+}
+
 img{
-	padding: 2px;
+	padding: 4px;
 }
 
 button{
@@ -27,4 +34,5 @@ p{
 	text-align: center;
 	font-family: "Calibri";
 	font-size: 16px;
+	color: white;
 }

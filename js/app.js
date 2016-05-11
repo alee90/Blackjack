@@ -127,6 +127,10 @@ function dealerHit(){
     dealerScore = 0;
     var aces = 0;
 
+    if(hiddenCard.name == 'ace'){
+        hiddenCard.value = 1;
+    }
+
     for(var i=0; i<dealerHand.length; i++){
         dealerScore = dealerScore + dealerHand[i].value;
         if(dealerHand[i]=='ace'){
