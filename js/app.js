@@ -5,6 +5,8 @@ var playerHand = new Array();
 var dealerHand = new Array();
 var playerScore;
 var dealerScore;
+var totalMoney;
+var bet;
 var win = 0;
 var loss = 0;
 var draw = 0;
@@ -29,32 +31,37 @@ var cards = [
   { name: 'king', value: 10 }
 ];
 
-for (var i=0; i<suits.length; i++) 
-{
-  var suit = suits[i]; // grab suit from suit array
-  deck[i] = new Array(); // 13 cards per suit
-  for (var x=0; x<13; x++){ // Sorts the 13 cards of the suit into an array
-    var cardName = cards[x].name;
-    deck[i][x] = {
+for (var i=0; i<suits.length; i++) {
+    var suit = suits[i]; // grab suit from suit array
+    deck[i] = new Array(); // 13 cards per suit
+    for (var x=0; x<13; x++){ // Sorts the 13 cards of the suit into an array
+        var cardName = cards[x].name; //assign name
+        deck[i][x] = {
     // set URL of img + assign dealt = false because card has not been dealt yet
-      url: 'images/'+suit+'/'+cardName+'_of_'+suit+'.png', 
-      dealt: false,
-      suit: suit,
-      name: cards[x].name,
-      value: cards[x].value
-    };
+        url: 'images/'+suit+'/'+cardName+'_of_'+suit+'.png', 
+        dealt: false,
+        suit: suit,
+        name: cards[x].name,
+        value: cards[x].value
+        };
   }
 }
+
+// function takeBet(){
+//     var initWallet = 200;
+//     var x = prompt('How much are you wagering? Remaining money: '+totalMoney, '0');
+//     bet = parseInt(x);
+//     var totalMoney = initWallet - bet;
+//     return totalMoney;
+// }
 
 //deal cards and append them onto html divs
 var deal = function(){
     var playerArea = document.getElementById('playerArea');
     var dealerArea = document.getElementById('dealerArea');
 
-    //dealer
-    var card = getCard();
-    dealerHand.push(card);
-    dealerArea.innerHTML += "<img src='" + card.url + "'height='200' width='130'>";
+    //dealer hidden card
+    dealerArea.innerHTML += "<img src='images/cardbg.png' height='200' width='130' id='hidden'>";
     //dealer
     card = getCard();
     dealerHand.push(card);
@@ -88,11 +95,34 @@ var getCard = function(){
 function hitMe(){
     var playerArea = document.getElementById('playerArea');
     var card = getCard();
+    var aces = 0;
     playerHand.push(card);
     playerArea.innerHTML += "<img src='"+card.url+"'height='200' width='130'>";
+
+    for(var i=0; i<playerHand.length; i++){
+        playerScore = playerScore + playerHand[i].value;
+        if(playerHand[i]=='ace'){
+            aces = aces + 1; //add one to ace counter
+        }
+    }
+    
+    if (playerScore > 21 && aces > 0){
+        playerScore = playerScore - 10;
+        aces = aces - 1;
+    }
+
+    if(playerScore >= 21){
+        document.getElementById('hit').disabled = true;
+    }
 }
 //+1 card into dealer hand while condition is not met (house rules)
 function dealerHit(){
+    document.getElementById('hit').disabled = false;
+    document.getElementById('deal').disabled = false; //re-enable play button after round
+    var hiddenCard = getCard(); //reveal hidden card
+    document.getElementById('hidden').src = hiddenCard.url;
+    dealerHand.push(hiddenCard);
+
     dealerScore = 0;
     var aces = 0;
 
@@ -102,12 +132,13 @@ function dealerHit(){
             aces = aces + 1; //add one to ace counter
         }
     }
+
     if (dealerScore > 21 && aces > 0){
         dealerScore = dealerScore - 10;
         aces = aces - 1;
     }
 
-    while(dealerScore <= 17){  //draw until score > 17
+    while(dealerScore < 17){  //draw until score > 17
         var dealerArea = document.getElementById('dealerArea');
         var card = getCard();
         dealerHand.push(card);
@@ -116,6 +147,10 @@ function dealerHit(){
 
         if(card.name == 'ace'){
             aces = aces + 1;
+        }
+        if (dealerScore > 21 && aces > 0){
+            dealerScore = dealerScore - 10;
+            aces = aces - 1;
         }
     } 
 }
@@ -135,45 +170,57 @@ function playScore(){
 
 //win conditions 
 function winner(){
+    // var totalMoney = totalMoney;
+    // var bet = bet;
     var resultText = document.getElementById('resultText');
     if(dealerScore>21 && playerScore>21){
-        loss++;
         resultText.innerHTML = 'You both bust!  Dealer: '+dealerScore+ ' || Player: '+playerScore;
+        // return totalMoney;
+        // console.log(totalMoney);
     }
     else if(dealerScore === playerScore){
-        draw++;
         resultText.innerHTML = "It's a draw! Dealer: " + dealerScore + ' || Player: ' + playerScore;
+        // totalMoney = totalMoney + bet;
+        // return totalMoney;
     }
     else if(playerScore>21 && dealerScore<= 21){
-        loss++;
         resultText.innerHTML = 'You busted, The Dealer Wins. Dealer: ' + dealerScore + ' || Player: '+ playerScore;
+        // return totalMoney;
     }
     else if(dealerScore>21 && playerScore<=21){
-        win++;
-        alert('Dealer busted. You Win! Dealer: ' + dealerScore + ' || Player: '+ playerScore);
         resultText.innerHTML = 'Dealer busted. You Win! Dealer: ' + dealerScore + ' || Player: '+ playerScore;
+        // totalMoney = totalMoney + 2*bet;
+        // return totalMoney;
     }
     else if(dealerScore>playerScore && dealerScore<= 21){
-        loss++;
         resultText.innerHTML = 'Dealer Wins. Dealer: ' + dealerScore + ' || Player: ' + playerScore;
+        // totalMoney = totalMoney;
+        // return totalMoney;
     }
     else if(playerScore>dealerScore && playerScore<= 21){
-        win++;
         resultText.innerHTML = 'You Win! Dealer: ' + dealerScore + ' || Player: ' + playerScore;
+        // totalMoney = totalMoney + 2*bet;
+        // return totalMoney;
     } 
     else if (playerScore === 21 && dealerScore<21){
-        win++
         resultText.innerHTML = 'You Win! Dealer: ' + dealerScore + ' || Player: ' + playerScore;
+        // totalMoney = totalMoney + 2*bet;
+        // return totalMoney;
     }
     else if (playerScore < 21 && dealerScore === 21){
-        loss++
         resultText.innerHTML = 'You lose! Dealer: ' + dealerScore + ' || Player: ' + playerScore
+        // return totalMoney;
     }
     else {
         alert("no!");
     }
-
+    // console.log(totalMoney);
 }
+
+function disablePlayButton(){
+    document.getElementById('deal').disabled = true;
+}
+
 
 function reset(){ 
     document.getElementById('playerArea').innerHTML=''; //clear playerArea

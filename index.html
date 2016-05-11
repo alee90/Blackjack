@@ -9,16 +9,17 @@
 <body>
 	<div id="resultText">
 	</div>
+		<p><b>Dealer</b></p>
 	<div id="dealerArea">
 	</div>
+		<p><b>Player!</b></p>
 	<div id="playerArea">
 	</div>
 	<div id="count">
 	</div>
-
 	<div id="buttons">
-		<button onclick="hitMe()">Hit Me!</button> 
-		<button onclick="reset(); deal()">Deal Me!</button>
+		<button id ='hit' onclick="hitMe()">Hit Me!</button> 
+		<button id ='deal' onclick="reset(); deal(); disablePlayButton()">Deal Me!</button>
 		<button onclick="dealerHit(); playScore(); winner()">Stay</button>
 	</div> 
 </body>

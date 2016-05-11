@@ -1,3 +1,30 @@
 div{
 	text-align: center;
 }
+
+body{
+	background-color: limegreen;
+}
+
+#playerArea{
+	padding: 3px;
+}
+
+#dealerArea{
+	padding: 3px;
+}
+
+img{
+	padding: 2px;
+}
+
+button{
+	height: 40px;
+	width: 75px;
+	padding: 5px;
+}
+p{
+	text-align: center;
+	font-family: "Calibri";
+	font-size: 16px;
+}
