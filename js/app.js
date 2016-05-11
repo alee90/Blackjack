@@ -53,23 +53,19 @@ var deal = function(){
 
     //dealer
     var card = getCard();
-    console.log(card);
     dealerHand.push(card);
     dealerArea.innerHTML += "<img src='" + card.url + "'height='200' width='130'>";
     //dealer
     card = getCard();
-    console.log(card);
     dealerHand.push(card);
     dealerArea.innerHTML += "<img src='" + card.url + "'height='200' width='130'>";
 
     //player
     card = getCard();
-    console.log(card);
     playerHand.push(card);
     playerArea.innerHTML += "<img src='" + card.url + "'height='200' width='130'>";
     //player
     card = getCard();
-    console.log(card);
     playerHand.push(card);
     playerArea.innerHTML += "<img src='" + card.url + "'height='200' width='130'>";
 }
@@ -93,7 +89,6 @@ function hitMe(){
     var playerArea = document.getElementById('playerArea');
     var card = getCard();
     playerHand.push(card);
-    console.log(card);
     playerArea.innerHTML += "<img src='"+card.url+"'height='200' width='130'>";
 }
 //+1 card into dealer hand while condition is not met (house rules)
@@ -107,23 +102,22 @@ function dealerHit(){
             aces = aces + 1; //add one to ace counter
         }
     }
+    if (dealerScore > 21 && aces > 0){
+        dealerScore = dealerScore - 10;
+        aces = aces - 1;
+    }
 
     while(dealerScore <= 17){  //draw until score > 17
         var dealerArea = document.getElementById('dealerArea');
         var card = getCard();
         dealerHand.push(card);
-        console.log(card);
         dealerArea.innerHTML += "<img src='" + card.url + "'height='200' width='130'>";
         dealerScore = dealerScore + card.value;
 
         if(card.name == 'ace'){
             aces = aces + 1;
         }
-        if (dealerScore > 21 && aces > 0){
-            dealerScore = dealerScore - 10;
-            aces = aces - 1;
-            }
-        } 
+    } 
 }
 
 function playScore(){
@@ -145,17 +139,14 @@ function winner(){
     if(dealerScore>21 && playerScore>21){
         loss++;
         resultText.innerHTML = 'You both bust!  Dealer: '+dealerScore+ ' || Player: '+playerScore;
-        alert('You both bust!  Dealer: '+dealerScore+ ' || Player: '+playerScore);
     }
     else if(dealerScore === playerScore){
         draw++;
-        alert("It's a draw! Dealer: " + dealerScore + ' || Player: ' + playerScore);
         resultText.innerHTML = "It's a draw! Dealer: " + dealerScore + ' || Player: ' + playerScore;
     }
     else if(playerScore>21 && dealerScore<= 21){
         loss++;
         resultText.innerHTML = 'You busted, The Dealer Wins. Dealer: ' + dealerScore + ' || Player: '+ playerScore;
-        alert('You busted, The Dealer Wins. Dealer: ' + dealerScore + ' || Player: '+ playerScore);
     }
     else if(dealerScore>21 && playerScore<=21){
         win++;
@@ -164,20 +155,18 @@ function winner(){
     }
     else if(dealerScore>playerScore && dealerScore<= 21){
         loss++;
-        alert('Dealer Wins. Dealer: ' + dealerScore + ' || Player: ' + playerScore);
         resultText.innerHTML = 'Dealer Wins. Dealer: ' + dealerScore + ' || Player: ' + playerScore;
     }
     else if(playerScore>dealerScore && playerScore<= 21){
         win++;
-        alert('You Win! Dealer: ' + dealerScore + ' || Player: ' + playerScore);
         resultText.innerHTML = 'You Win! Dealer: ' + dealerScore + ' || Player: ' + playerScore;
     } 
     else if (playerScore === 21 && dealerScore<21){
-        alert('You won!');
+        win++
         resultText.innerHTML = 'You Win! Dealer: ' + dealerScore + ' || Player: ' + playerScore;
     }
     else if (playerScore < 21 && dealerScore === 21){
-        alert('You lose!')
+        loss++
         resultText.innerHTML = 'You lose! Dealer: ' + dealerScore + ' || Player: ' + playerScore
     }
     else {
