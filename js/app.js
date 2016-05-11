@@ -95,22 +95,22 @@ var getCard = function(){
 function hitMe(){
     var playerArea = document.getElementById('playerArea');
     var card = getCard();
-    var aces = 0;
+    // var aces = 0;
     playerHand.push(card);
     playerArea.innerHTML += "<img src='"+card.url+"'height='200' width='130'>";
 
-    for(var i=0; i<playerHand.length; i++){
-        playerScore = playerScore + playerHand[i].value;
-        if(playerHand[i]=='ace'){
-            aces = aces + 1; //add one to ace counter
-        }
-    }
+    // for(var i=0; i<playerHand.length; i++){
+    //     playerScore = playerScore + playerHand[i].value;
+    //     if(playerHand[i]=='ace'){
+    //         aces = aces + 1; //add one to ace counter
+    //     }
+    // }
     
-    if (playerScore > 21 && aces > 0){
-        playerScore = playerScore - 10;
-        aces = aces - 1;
-    }
-
+    // if (playerScore > 21 && aces > 0){
+    //     playerScore = playerScore - 10;
+    //     aces = aces - 1;
+    // }
+// }
     if(playerScore >= 21){
         document.getElementById('hit').disabled = true;
     }
@@ -119,6 +119,7 @@ function hitMe(){
 function dealerHit(){
     document.getElementById('hit').disabled = false;
     document.getElementById('deal').disabled = false; //re-enable play button after round
+   
     var hiddenCard = getCard(); //reveal hidden card
     document.getElementById('hidden').src = hiddenCard.url;
     dealerHand.push(hiddenCard);
@@ -239,7 +240,3 @@ function reset(){
         }
     }
 }
-
-// console.log(win);
-// console.log(loss);
-// console.log(draw);
