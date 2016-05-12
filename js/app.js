@@ -8,7 +8,7 @@ var dealerScore;
 
 
 
-var player = {
+var player = { //thanks greg
     name: 'player',
     bank: 200,
     currentBet: 0,
@@ -84,8 +84,6 @@ for (var i=0; i<suits.length; i++) {
         };
   }
 }
-
-
 
 //deal cards and append them onto html divs
 var deal = function(){
@@ -224,7 +222,7 @@ function winner(){
     }
     else if(dealerScore === playerScore){
         resultText.innerHTML = "It's a draw!" + '<br />' + 'Dealer: ' + dealerScore + ' || Player: ' + playerScore;
-        console.log('draw');
+        alert('Draw!')
     }
     else if(playerScore>21 && dealerScore<= 21){
         resultText.innerHTML = 'You busted' + '<br />' + ' The Dealer Wins. Dealer: ' + dealerScore + ' || Player: '+ playerScore;
