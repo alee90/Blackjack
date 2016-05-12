@@ -6,8 +6,6 @@ var dealerHand = new Array();
 var playerScore;
 var dealerScore;
 
-
-
 var player = { //thanks greg
     name: 'player',
     bank: 200,
@@ -23,12 +21,6 @@ var player = { //thanks greg
         return player.bank;
         },
     }
-
-if(player.bank===0){
-        alert('You are out of $$$!');
-    }
-
-
 
 function takeBet(){
     var x = prompt('How much are you wagering? You have: $'+player.bank,'0');
@@ -75,14 +67,14 @@ for (var i=0; i<suits.length; i++) {
     for (var x=0; x<13; x++){ // Sorts the 13 cards of the suit into an array
         var cardName = cards[x].name; //assign name
         deck[i][x] = {
-    // set URL of img + assign dealt = false because card has not been dealt yet
-        url: 'images/'+suit+'/'+cardName+'_of_'+suit+'.png', 
-        dealt: false,
-        suit: suit,
-        name: cards[x].name,
-        value: cards[x].value
+        // set URL of img + assign dealt = false because card has not been dealt yet
+            url: 'images/'+suit+'/'+cardName+'_of_'+suit+'.png', 
+            dealt: false,
+            suit: suit,
+            name: cards[x].name,
+            value: cards[x].value
         };
-  }
+    }
 }
 
 //deal cards and append them onto html divs
@@ -127,22 +119,9 @@ var getCard = function(){
 function hitMe(){
     var playerArea = document.getElementById('playerArea');
     var card = getCard();
-    // var aces = 0;
     playerHand.push(card);
     playerArea.innerHTML += "<img src='"+card.url+"'height='200' width='130'>";
 
-    // for(var i=0; i<playerHand.length; i++){
-    //     playerScore = playerScore + playerHand[i].value;
-    //     if(playerHand[i]=='ace'){
-    //         aces = aces + 1; //add one to ace counter
-    //     }
-    // }
-    
-    // if (playerScore > 21 && aces > 0){
-    //     playerScore = playerScore - 10;
-    //     aces = aces - 1;
-    // }
-// }
     if(playerScore >= 21){
         document.getElementById('hit').disabled = true;
     }
@@ -164,19 +143,7 @@ function dealerHit(){
         if(dealerHand[i].name==='ace'){
             aces++; //add one to ace counter
         }
-        // if(dealerHand[i].name === 'ace' && dealerScore > 21){
-        //     dealerHand[i].value = 1;
-        //     aces--;
-        // } else {
-        //     dealerHand[i].value = 11;
-        //     aces--;
-        // }
     }
-
-    // if (dealerScore > 21 && aces > 0){
-    //     dealerScore = dealerScore - 10;
-    //     aces = aces - 1;
-    // }
 
     while(dealerScore < 17){  //draw until score > 17
         var dealerArea = document.getElementById('dealerArea');
@@ -210,8 +177,6 @@ function playScore(){
 
 //win conditions 
 function winner(){
-    // var totalMoney = totalMoney;
-    // var bet = bet;
     var dealerText = document.getElementById('banker');
     var resultText = document.getElementById('resultText');
     if(dealerScore>21 && playerScore>21){
@@ -264,15 +229,11 @@ function winner(){
         alert('give ano!');
     }
     return player.bank;
-
-    // console.log(totalMoney);
 }
-
 
 function disablePlayButton(){
     document.getElementById('deal').disabled = true;
 }
-
 
 function reset(){ 
     document.getElementById('playerArea').innerHTML=''; //clear playerArea

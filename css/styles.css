@@ -10,18 +10,27 @@ body{
 #dance{
 	position: absolute;
 }
+
+#playerText{
+	font-size: 20px;
+}
+
+#dealerText{
+	font-size: 20px;
+}
+
 #playerArea{
-	padding: 3px;
+	padding: 1px;
 }
 
 #dealerArea{
-	padding: 3px;
+	padding: 1px;
 }
 
 #resultText{
 	font-family: "Economica";
-	font-size: 14px;
-	color: white;
+	font-size: 18px;
+	color: papayawhip;
 }
 
 img{
@@ -39,18 +48,17 @@ button{
 p{
 	text-align: center;
 	font-family: "Economica";
-	font-size: 16px;
 	color: white;
 }
 
 #header{
 	font-family: "Economica";
-	font-size: 30px;
+	font-size: 50px;
 }
 
 #banker{
 	font-family: "Economica";
-	font-size: 18px;
+	font-size: 26px;
 	margin-bottom: 10px;
 	color: white;
 }
