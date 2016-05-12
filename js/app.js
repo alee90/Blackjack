@@ -245,7 +245,6 @@ function reset(){
 
     playerScore = 0; //reset the score counter
     dealerScore = 0;
-    
     for (var i=0; i<4; i++){  //shuffle the deck
         for (var j=0; j<13; j++)  
         {
