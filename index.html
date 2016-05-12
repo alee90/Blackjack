@@ -7,11 +7,14 @@
 	<script type="text/javascript" src="js/app.js"></script>
 </head>
 <body>
+	<div id="banker">
+	</div>
 	<div id="resultText">
 	</div>
 		<p id="dealerText"></p>
 	<div id="dealerArea">
 	</div>
+		<img id="dance" src="images/dance.gif">
 		<p id="header">BLACKJACK</p>
 		<p id="playerText"></p>
 	<div id="playerArea">
@@ -23,7 +26,6 @@
 		<button id ='deal' onclick="takeBet(); reset(); deal(); disablePlayButton()">Deal Me!</button>
 		<button id ='stay' onclick="dealerHit(); playScore(); winner()">Stay</button>
 	</div> 
-	<div id="banker">
-	</div>
+
 </body>
 </html>

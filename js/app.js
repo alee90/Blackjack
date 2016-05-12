@@ -6,21 +6,14 @@ var dealerHand = new Array();
 var playerScore;
 var dealerScore;
 
-// var totalMoney;
-// var bet;
 
-function takeBet(){
-    var x = prompt('How much are you wagering?','0');
-    var bet = parseInt(x);
-    player.currentBet = bet;
-}
 
 var player = {
     name: 'player',
-    bank: 400,
+    bank: 200,
     currentBet: 0,
     lose: loseMoney = function(lose){
-        var bankroll = parseInt(player.money);
+        var bankroll = parseInt(player.bank);
         player.bank = bankroll - lose;
         return player.bank;
         },
@@ -31,9 +24,19 @@ var player = {
         },
     }
 
+if(player.bank===0){
+        alert('You are out of $$$!');
+    }
 
 
-function appendStuff(){
+
+function takeBet(){
+    var x = prompt('How much are you wagering? You have: $'+player.bank,'0');
+    var bet = parseInt(x);
+    player.currentBet = bet;
+}
+
+function boardSet(){
     var dealerText = document.getElementById('dealerText');
     var playerText = document.getElementById('playerText');
     var blackJackText = document.getElementById('header');
@@ -42,7 +45,7 @@ function appendStuff(){
     dealerText.innerHTML = 'Dealer Area';
     playerText.innerHTML = 'Player Area'
     blackJackText.innerHTML = '';
-    bankerText.innerHTML = ''
+    bankerText.innerHTML = 'Current Bankroll is:' + '<br />' + '$' + player.bank;
 }
 
 // 2d array - suits/#s
@@ -86,7 +89,7 @@ for (var i=0; i<suits.length; i++) {
 
 //deal cards and append them onto html divs
 var deal = function(){
-    appendStuff();
+    boardSet();
 
     var playerArea = document.getElementById('playerArea');
     var dealerArea = document.getElementById('dealerArea');
@@ -202,7 +205,7 @@ function playScore(){
 
     for(var i=0; i<playerHand.length; i++){
         if(playerHand[i].name == 'ace' && playerScore > 21){ //adjusting for aces
-            playerScore = playerScore - 10;
+            playerScore -= 10;
         }
     }
 }
@@ -211,71 +214,62 @@ function playScore(){
 function winner(){
     // var totalMoney = totalMoney;
     // var bet = bet;
+    var dealerText = document.getElementById('banker');
     var resultText = document.getElementById('resultText');
     if(dealerScore>21 && playerScore>21){
         resultText.innerHTML = 'You both bust!  Dealer: '+dealerScore+ ' || Player: '+playerScore;
         var lose = parseInt(player.currentBet);
-            loseMoney(lose);
-        // return totalMoney;
-        // console.log(totalMoney);
+        loseMoney(lose);
+        alert('You have lost: $'+lose);
     }
     else if(dealerScore === playerScore){
         resultText.innerHTML = "It's a draw!" + '<br />' + 'Dealer: ' + dealerScore + ' || Player: ' + playerScore;
-        console.log(player.bank);
-        // totalMoney = totalMoney + bet;
-        // return totalMoney;
+        console.log('draw');
     }
     else if(playerScore>21 && dealerScore<= 21){
         resultText.innerHTML = 'You busted' + '<br />' + ' The Dealer Wins. Dealer: ' + dealerScore + ' || Player: '+ playerScore;
         var lose = parseInt(player.currentBet);
         loseMoney(lose);
-        console.log(player.bank);
-        // return totalMoney;
+        alert('You have lost: $'+lose);
     }
     else if(dealerScore>21 && playerScore<=21){
         resultText.innerHTML = 'Dealer busted' + '<br />' + ' You Win! Dealer: ' + dealerScore + ' || Player: '+ playerScore;
         var gain = parseInt(player.currentBet);
             gainMoney(gain);
-        console.log(player.bank);
-        // totalMoney = totalMoney + 2*bet;
-        // return totalMoney;
+            alert('You have won: $'+gain);
     }
     else if(dealerScore>playerScore && dealerScore<= 21){
         resultText.innerHTML = 'Dealer Wins' + '<br />' + ' Dealer: ' + dealerScore + ' || Player: ' + playerScore;
         var lose = parseInt(player.currentBet);
-        loseMoney(lose);
-        console.log(player.bank);
-        // totalMoney = totalMoney;
-        // return totalMoney;
+            loseMoney(lose);
+            alert('You have lost: $'+lose);
     }
     else if(playerScore>dealerScore && playerScore<= 21){
         resultText.innerHTML = 'You Win' + '<br />' + ' Dealer: ' + dealerScore + ' || Player: ' + playerScore;
         var gain = parseInt(player.currentBet);
-        gainMoney(gain);
-        console.log(player.bank);
-        // totalMoney = totalMoney + 2*bet;
-        // return totalMoney;
+            gainMoney(gain);
+            alert('You have won: $'+gain);
     } 
     else if (playerScore === 21 && dealerScore<21){
         resultText.innerHTML = 'You Win!' + '<br />' + 'Dealer: ' + dealerScore + ' || Player: ' + playerScore;
         var gain = parseInt(player.currentBet);
-        gainMoney(gain);
-        console.log(player.bank);
-        // totalMoney = totalMoney + 2*bet;
-        // return totalMoney;
+            gainMoney(gain);
+            alert('You have won: $'+gain);
     }
     else if (playerScore < 21 && dealerScore === 21){
-        resultText.innerHTML = 'You lose!' + '<br />' + 'Dealer: ' + dealerScore + ' || Player: ' + playerScore
+        resultText.innerHTML = 'You lose!' + '<br />' + 'Dealer: ' + dealerScore + ' || Player: ' + playerScore;
         var lose = parseInt(player.currentBet);
-        loseMoney(lose);
-        console.log(player.bank);
-        // return totalMoney;
+            loseMoney(lose);
+            alert('You have lost: $'+lose);
     }
     else {
         alert('give ano!');
     }
+    return player.bank;
+
     // console.log(totalMoney);
 }
+
 
 function disablePlayButton(){
     document.getElementById('deal').disabled = true;
