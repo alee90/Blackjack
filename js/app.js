@@ -5,11 +5,24 @@ var playerHand = new Array();
 var dealerHand = new Array();
 var playerScore;
 var dealerScore;
-var totalMoney;
-var bet;
-var win = 0;
-var loss = 0;
-var draw = 0;
+
+// var totalMoney;
+// var bet;
+
+// var player = {
+//     name: "player",
+//     bank: 400,
+//     currentBet: 0 ,
+//     loss: loseMoney = function(loss){
+//         var theMoney = parseInt(player.money);
+//         player.money = theMoney - loss;
+//         },
+//     gain: gainMoney = function(gain){
+//         var theMoney = parseInt(player.money);
+//         player.money = theMoney + gain;
+//         },
+//     }
+
 // 2d array - suits/#s
 var deck = new Array();
 // array of suits
@@ -132,13 +145,13 @@ function dealerHit(){
         if(dealerHand[i].name==='ace'){
             aces++; //add one to ace counter
         }
-        if(dealerHand[i].name === 'ace' && dealerScore > 21){
-            dealerHand[i].value = 1;
-            aces--;
-        } else {
-            dealerHand[i].value = 11;
-            aces--;
-        }
+        // if(dealerHand[i].name === 'ace' && dealerScore > 21){
+        //     dealerHand[i].value = 1;
+        //     aces--;
+        // } else {
+        //     dealerHand[i].value = 11;
+        //     aces--;
+        // }
     }
 
     // if (dealerScore > 21 && aces > 0){
