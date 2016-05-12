@@ -127,21 +127,24 @@ function dealerHit(){
     dealerScore = 0;
     var aces = 0;
 
-    if(hiddenCard.name == 'ace'){
-        hiddenCard.value = 1;
-    }
-
     for(var i=0; i<dealerHand.length; i++){
         dealerScore = dealerScore + dealerHand[i].value;
-        if(dealerHand[i]=='ace'){
-            aces = aces + 1; //add one to ace counter
+        if(dealerHand[i].name==='ace'){
+            aces++; //add one to ace counter
+        }
+        if(dealerHand[i].name === 'ace' && dealerScore > 21){
+            dealerHand[i].value = 1;
+            aces--;
+        } else {
+            dealerHand[i].value = 11;
+            aces--;
         }
     }
 
-    if (dealerScore > 21 && aces > 0){
-        dealerScore = dealerScore - 10;
-        aces = aces - 1;
-    }
+    // if (dealerScore > 21 && aces > 0){
+    //     dealerScore = dealerScore - 10;
+    //     aces = aces - 1;
+    // }
 
     while(dealerScore < 17){  //draw until score > 17
         var dealerArea = document.getElementById('dealerArea');
@@ -150,7 +153,7 @@ function dealerHit(){
         dealerArea.innerHTML += "<img src='" + card.url + "'height='200' width='130'>";
         dealerScore = dealerScore + card.value;
 
-        if(card.name == 'ace'){
+        if(card.name === 'ace'){
             aces = aces + 1;
         }
         if (dealerScore > 21 && aces > 0){
