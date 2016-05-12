@@ -1,6 +1,6 @@
 # Blackjack
 
-[www.LocationOfMyProject](www.enteryourprojecturl.com)
+https://alee90.github.io/Blackjack/
 
 ### Description
 This is a single player card game against a computer, where one draws cards until he/she attempts to reach a total value of 21 points.  

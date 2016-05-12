@@ -68,7 +68,7 @@ for (var i=0; i<suits.length; i++) {
         var cardName = cards[x].name; //assign name
         deck[i][x] = {
         // set URL of img + assign dealt = false because card has not been dealt yet
-            url: 'images/'+suit+'/'+cardName+'_of_'+suit+'.png', 
+            url: '../images/'+suit+'/'+cardName+'_of_'+suit+'.png', 
             dealt: false,
             suit: suit,
             name: cards[x].name,
