@@ -43,7 +43,7 @@ function boardSet(){
 // 2d array - suits/#s
 var deck = new Array();
 // array of suits
-var suits = ['hearts', 'diamonds', 'clubs', 'spades'];
+var suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
 //object inside array for cards
 var cards = [
   { name: 'ace', value: 11 },
