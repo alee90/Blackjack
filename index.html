@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>BLACKJACK!</title>
+	<title>Blackjack</title>
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<script src="https://code.jquery.com/jquery-2.2.3.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
@@ -9,10 +9,11 @@
 <body>
 	<div id="resultText">
 	</div>
-		<p><b>Dealer</b></p>
+		<p id="dealerText"></p>
 	<div id="dealerArea">
 	</div>
-		<p><b>Player</b></p>
+		<p id="header">BLACKJACK</p>
+		<p id="playerText"></p>
 	<div id="playerArea">
 	</div>
 	<div id="count">
@@ -20,7 +21,7 @@
 	<div id="buttons">
 		<button id ='hit' onclick="hitMe()">Hit Me!</button> 
 		<button id ='deal' onclick="reset(); deal(); disablePlayButton()">Deal Me!</button>
-		<button onclick="dealerHit(); playScore(); winner()">Stay</button>
+		<button id ='stay' onclick="dealerHit(); playScore(); winner()">Stay</button>
 	</div> 
 </body>
 </html>

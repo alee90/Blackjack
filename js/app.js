@@ -23,6 +23,16 @@ var dealerScore;
 //         },
 //     }
 
+function appendStuff(){
+    var dealerText = document.getElementById('dealerText');
+    var playerText = document.getElementById('playerText');
+    var blackJackText = document.getElementById('header');
+
+    dealerText.innerHTML = 'Dealer Area';
+    playerText.innerHTML = 'Player Area'
+    blackJackText.innerHTML = '';
+}
+
 // 2d array - suits/#s
 var deck = new Array();
 // array of suits
@@ -70,6 +80,9 @@ for (var i=0; i<suits.length; i++) {
 
 //deal cards and append them onto html divs
 var deal = function(){
+    appendStuff();
+
+
     var playerArea = document.getElementById('playerArea');
     var dealerArea = document.getElementById('dealerArea');
 
@@ -200,36 +213,36 @@ function winner(){
         // console.log(totalMoney);
     }
     else if(dealerScore === playerScore){
-        resultText.innerHTML = "It's a draw! Dealer: " + dealerScore + ' || Player: ' + playerScore;
+        resultText.innerHTML = "It's a draw!" + '<br />' + 'Dealer: ' + dealerScore + ' || Player: ' + playerScore;
         // totalMoney = totalMoney + bet;
         // return totalMoney;
     }
     else if(playerScore>21 && dealerScore<= 21){
-        resultText.innerHTML = 'You busted, The Dealer Wins. Dealer: ' + dealerScore + ' || Player: '+ playerScore;
+        resultText.innerHTML = 'You busted' + '<br />' + ' The Dealer Wins. Dealer: ' + dealerScore + ' || Player: '+ playerScore;
         // return totalMoney;
     }
     else if(dealerScore>21 && playerScore<=21){
-        resultText.innerHTML = 'Dealer busted. You Win! Dealer: ' + dealerScore + ' || Player: '+ playerScore;
+        resultText.innerHTML = 'Dealer busted' + '<br />' + ' You Win! Dealer: ' + dealerScore + ' || Player: '+ playerScore;
         // totalMoney = totalMoney + 2*bet;
         // return totalMoney;
     }
     else if(dealerScore>playerScore && dealerScore<= 21){
-        resultText.innerHTML = 'Dealer Wins. Dealer: ' + dealerScore + ' || Player: ' + playerScore;
+        resultText.innerHTML = 'Dealer Wins' + '<br />' + ' Dealer: ' + dealerScore + ' || Player: ' + playerScore;
         // totalMoney = totalMoney;
         // return totalMoney;
     }
     else if(playerScore>dealerScore && playerScore<= 21){
-        resultText.innerHTML = 'You Win! Dealer: ' + dealerScore + ' || Player: ' + playerScore;
+        resultText.innerHTML = 'You Win' + '<br />' + ' Dealer: ' + dealerScore + ' || Player: ' + playerScore;
         // totalMoney = totalMoney + 2*bet;
         // return totalMoney;
     } 
     else if (playerScore === 21 && dealerScore<21){
-        resultText.innerHTML = 'You Win! Dealer: ' + dealerScore + ' || Player: ' + playerScore;
+        resultText.innerHTML = 'You Win!' + '<br />' + 'Dealer: ' + dealerScore + ' || Player: ' + playerScore;
         // totalMoney = totalMoney + 2*bet;
         // return totalMoney;
     }
     else if (playerScore < 21 && dealerScore === 21){
-        resultText.innerHTML = 'You lose! Dealer: ' + dealerScore + ' || Player: ' + playerScore
+        resultText.innerHTML = 'You lose!' + '<br />' + 'Dealer: ' + dealerScore + ' || Player: ' + playerScore
         // return totalMoney;
     }
     else {
