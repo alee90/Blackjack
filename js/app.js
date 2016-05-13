@@ -22,12 +22,14 @@ var player = { //thanks greg
         },
     }
 
+//prompt to take the bet from user
 function takeBet(){
     var x = prompt('How much are you wagering? You have: $'+player.bank,'0');
     var bet = parseInt(x);
     player.currentBet = bet;
 }
 
+//sets up board/text
 function boardSet(){
     var dealerText = document.getElementById('dealerText');
     var playerText = document.getElementById('playerText');
@@ -227,7 +229,7 @@ function winner(){
             alert('You have lost: $'+lose);
     }
     else {
-        alert('give ano!');
+        alert('give a no!');
     }
     return player.bank;
 }

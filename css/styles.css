@@ -19,14 +19,6 @@ body{
 	font-size: 20px;
 }
 
-#playerArea{
-	padding: 1px;
-}
-
-#dealerArea{
-	padding: 1px;
-}
-
 #resultText{
 	font-family: "Economica";
 	font-size: 18px;
@@ -34,13 +26,13 @@ body{
 }
 
 img{
-	padding: 4px;
+	padding: 2px;
 	align-content: center;
 	position: relative;
 }
 
 button{
-	margin-top: 10px;
+	margin-top: 5px;
 	height: 40px;
 	width: 75px;
 	padding: 5px;
