@@ -81,6 +81,7 @@ for (var i=0; i<suits.length; i++) {
 var deal = function(){
     boardSet();
 
+    document.getElementById('hit').disabled = false;
     var playerArea = document.getElementById('playerArea');
     var dealerArea = document.getElementById('dealerArea');
 
